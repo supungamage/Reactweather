@@ -18,7 +18,7 @@ var WheatherForm = React.createClass({
             <input type="text" ref="location"/>
           </div>
           <div>
-            <button>Get Whether</button>
+            <button className="button expanded hollow">Get Whether</button>
           </div>
         </form>
       </div>

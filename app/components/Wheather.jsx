@@ -29,7 +29,7 @@ var Wheather = React.createClass({
 
     function renderMessage() {
       if(isLoading) {
-        return <h3>Fetching wheater...</h3>;
+        return <h3 className="text-center">Fetching wheater...</h3>;
       } else if(location && temp) {
         return <WheatherMessage location={location} temp={temp}/>;
       }
@@ -37,14 +37,12 @@ var Wheather = React.createClass({
 
     return (
       <div>
-        <h3>Weather Component</h3>
+        <h1 className="text-center">Get Weather</h1>
         <WheatherForm onSearch={this.handleSearch}/>
         {renderMessage()}
       </div>
     )
   }
-
-
 });
 
 module.exports = Wheather;
