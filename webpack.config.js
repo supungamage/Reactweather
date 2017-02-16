@@ -29,6 +29,7 @@ module.exports = {
       WheatherMessage: 'app/components/WheatherMessage.jsx',
       About: 'app/components/About.jsx',
       Examples: 'app/components/Examples.jsx',
+      ErrorModal: 'app/components/ErrorModal.jsx',
       OpenWeatherMap: 'app/api/openWheatherMap.jsx'
     },
     extensions: ['','.js','.jsx']

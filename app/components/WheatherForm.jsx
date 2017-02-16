@@ -14,15 +14,11 @@ var WheatherForm = React.createClass({
     return (
       <div>
         <form onSubmit={this.onFormSubmit}>
-          <div>
-            <input type="text" ref="location"/>
-          </div>
-          <div>
-            <button className="button expanded hollow">Get Whether</button>
-          </div>
+          <input type="text" ref="location"/>
+          <button className="button expanded hollow">Get Whether</button>
         </form>
       </div>
-    )
+    );
   }
 });
 

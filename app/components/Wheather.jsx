@@ -1,6 +1,7 @@
 var React = require('react');
 var WheatherForm = require('WheatherForm');
 var WheatherMessage = require('WheatherMessage');
+var ErrorModal = require('ErrorModal');
 var OpenWeatherMap = require('OpenWeatherMap');
 
 var Wheather = React.createClass({
@@ -11,7 +12,10 @@ var Wheather = React.createClass({
   },
   handleSearch: function(location) {
     var that = this;
-    this.setState({isLoading: true});
+    this.setState({
+      isLoading: true,
+      errorMessage: undefined
+    });
 
     OpenWeatherMap.getTemp(location).then(function(temp) {
       that.setState({
@@ -19,13 +23,15 @@ var Wheather = React.createClass({
         temp: temp,
         isLoading: false
       });
-    }, function(errMessage) {
-      that.setState({isLoading: false});
-      alert(errMessage);
+    }, function(e) {
+      that.setState({
+        isLoading: false,
+        errorMessage: e.message
+      });
     });
   },
   render: function() {
-    var {location, temp, isLoading} = this.state;
+    var {location, temp, isLoading, errorMessage} = this.state;
 
     function renderMessage() {
       if(isLoading) {
@@ -35,11 +41,20 @@ var Wheather = React.createClass({
       }
     }
 
+    function renderErrorModal() {
+      if(typeof errorMessage === 'string') {
+        return(
+          <ErrorModal message={errorMessage}/>
+        )
+      }
+    }
+
     return (
       <div>
         <h1 className="text-center">Get Weather</h1>
         <WheatherForm onSearch={this.handleSearch}/>
         {renderMessage()}
+        {renderErrorModal()}
       </div>
     )
   }
